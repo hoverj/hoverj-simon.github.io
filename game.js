@@ -5,11 +5,13 @@ let userClickedPattern = [];
 let userChosenColor = "";
 let level = 0;
 let gameHasStarted = false;
+let gameEnded = false;
 
 //make the entire document clickable to be able to start the game
 $(document).keypress(function(event){
-  if(event.key === "a" && !gameHasStarted){
+  if((event.key === "a" && !gameHasStarted) || (gameEnded && event)){
     gameHasStarted = true;
+    gameEnded = false;
     $("h1").text("Level 0");
     nextSequence();
   }
@@ -57,6 +59,7 @@ function gameOver(currentLevel) {
   //reset the game Pattern
   gamePattern = [];
   level = 0;
+  gameEnded = true
 }
 
 
